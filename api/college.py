@@ -23,6 +23,11 @@ class CollegeAPI:
             college = body.get('college')
             if college is None or len(college) < 2:
                 return {'message': f'Input College Name'}, 210
+            
+            area = body.get('area')
+            if area is None or len(area) < 2:
+                return {'message': f'Input Area'}, 217
+            
             # validate uid
             id = body.get('id')
             uid = str(datetime.now()) # temporary UID that is unique to fill garbage data
@@ -32,9 +37,17 @@ class CollegeAPI:
             city = body.get('city')
             if city is None or len(city) < 1:
                 return {'message': f'Input City'}, 213
+            
             rate = body.get('rate')
             if rate is None or len(rate) < 0:
                 return {'message': f'Input number of repetitions (must be integer)'}, 214
+            
+            stufac = body.get('stufac')
+            if stufac is None or len(stufac) < 2:
+                return {'message': f'Input Student-Faculty Ratio'}, 217
+            majors = body.get('majors')
+            if majors is None or len(majors) < 2:
+                return {'message': f'Input Majors'}, 217
 
             from model.colleges import Colleges
 
@@ -43,6 +56,9 @@ class CollegeAPI:
                             college=college,
                             city=city,
                             rate=rate,
+                            area=area,
+                            stufac=stufac,
+                            majors=majors
                         )
             
             Colleges = io.create()
