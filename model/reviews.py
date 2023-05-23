@@ -7,7 +7,7 @@ from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
 
 
-# Define the Score class to manage actions in the 'score' table
+# Define the Review class to manage actions in the 'reviews' table
 class Review(db.Model):
     __tablename__ = 'reviews' 
 
@@ -32,11 +32,11 @@ class Review(db.Model):
         self._school = school
     
     @property
-    def score(self):
+    def review(self):
         return self._review
     
-    @score.setter
-    def score(self, review):
+    @review.setter
+    def review(self, review):
         self._review = review
         
     def is_review(self, review):
@@ -48,7 +48,7 @@ class Review(db.Model):
 
     def create(self):
         try:
-            # creates a person object from Score(db.Model) class, passes initializers
+            # creates a person object from Review(db.Model) class, passes initializers
             db.session.add(self)  # add prepares to persist person object to Reviews table
             db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
             return self
