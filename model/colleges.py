@@ -20,24 +20,24 @@ class Colleges(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     _uid = db.Column(db.String(255), unique=True, nullable=False)
     _college = db.Column(db.Text, unique=False, nullable=False)
-    _city = db.Column(db.Integer, unique=False, nullable=False)
-    _rate = db.Column(db.Integer, unique=False, nullable=False)
+    _cityName = db.Column(db.Text, unique=False, nullable=False)
+    _rate = db.Column(db.String, unique=False, nullable=False)
     _area = db.Column(db.String, unique=False, nullable=False)
-    _stufac = db.Column(db.Integer, unique=False, nullable=False)
+    _stufac = db.Column(db.String, unique=False, nullable=False)
     _majors = db.Column(db.Text, unique=False, nullable=False)
 
     
 
     # Constructor of a Inputworkout object, initializes of instance variables within object
-    def __init__(self, id, uid, college, city, rate, area, stufac, majors):
+    def __init__(self, id, uid, college, cityName, rate, area, stufac, majors):
         self.userID = id
         self._uid = uid
         self.college = college
-        self.city = city
-        self.rate= rate
-        self.area= area
-        self.stufac= stufac
-        self.majors= majors
+        self.cityName = cityName
+        self.rate = rate
+        self.area = area
+        self.stufac = stufac
+        self.majors = majors
 
 
     @property
@@ -64,12 +64,12 @@ class Colleges(db.Model):
 
 
     @property
-    def city(self):
-        return self._city
+    def cityName(self):
+        return self._cityName
     
-    @city.setter
-    def sets(self, city):
-        self._city = city
+    @cityName.setter
+    def sets(self, cityName):
+        self._cityName = cityName
 
 
     @property
@@ -127,17 +127,17 @@ class Colleges(db.Model):
             "id": self.id,
             "uid": self.uid,
             "college": self.college,
-            "city": self.city,
+            "city": self.cityName,
             "rate": self.rate,
             "area": self.area,
             "stufac": self.stufac,
             "majors": self.majors
         }
     
-    def update(self,sets=""):
+    def update(self,rate=""):
         """only updates values with length"""
-        if len(sets) > 0:
-            self.sets = sets
+        if len(rate) > 0:
+            self.rate = rate
         db.session.commit()
         return self
 
