@@ -20,10 +20,10 @@ class Colleges(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     _uid = db.Column(db.String(255), unique=True, nullable=False)
     _college = db.Column(db.Text, unique=False, nullable=False)
-    _city = db.Column(db.Integer, unique=False, nullable=False)
-    _rate = db.Column(db.Integer, unique=False, nullable=False)
+    _city = db.Column(db.Text, unique=False, nullable=False)
+    _rate = db.Column(db.String, unique=False, nullable=False)
     _area = db.Column(db.String, unique=False, nullable=False)
-    _stufac = db.Column(db.Integer, unique=False, nullable=False)
+    _stufac = db.Column(db.String, unique=False, nullable=False)
     _majors = db.Column(db.Text, unique=False, nullable=False)
 
     
@@ -34,10 +34,10 @@ class Colleges(db.Model):
         self._uid = uid
         self.college = college
         self.city = city
-        self.rate= rate
-        self.area= area
-        self.stufac= stufac
-        self.majors= majors
+        self.rate = rate
+        self.area = area
+        self.stufac = stufac
+        self.majors = majors
 
 
     @property
