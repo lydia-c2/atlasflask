@@ -152,15 +152,15 @@ def initColleges():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        i1 = Colleges(college='USCD', id='ucsd', uid='ucsd1', cityName='San Diego', rate='34%', area='urban', stufac='19:1', majors='Biology, Cognitive Science, International studies')
-        i2 = Colleges(college='UCSC', id='ucsc', uid='ucsc1', cityName='Santa Cruz', rate='52%', area='', stufac='18:1', majors='Computer Science, Psychology, Cell/Cellular and Molecular Biology')
-        i3 = Colleges(college='UCLA', id='ucla', uid='ucla1', cityName='Los Angeles', rate='12%', area='urban', stufac='17:1', majors='Sociology, Political Science and Government, and Econometrics and Quantitative Economics')
-        i4 = Colleges(college='UC Davis', id='ucdavis', uid='ucdavis1', cityName='LA', rate='46%', area='', stufac='20:1', majors='Research and Experimental Psychology, Management Sciences and Information Systems, Neuroscience and Neurobiology')
-        i5 = Colleges(college='UC Berkeley', id='ucb', uid='ucb1', cityName='Berkeley', rate='14.4%', area='', stufac='18:1', majors='Cell/Cellular and Molecular Biology, Computer Science, and Econometrics and Quantitative Economics.')
-        i6 = Colleges(college='UC Riverside', id='ucr', uid='ucr1', cityName='Riverside', rate='69%', area='', stufac='22:1', majors='Business Administration and Management, Psychology, Biology/Biological Sciences')
-        i7 = Colleges(college='UC Merced', id='ucm', uid='ucm1', cityName='Merced', rate='89%', area='', stufac='20:1', majors='Biology/Biological Sciences, Psychology, Business Administration and Management')
-        i8 = Colleges(college='UCSB', id='ucsb', uid='ucsb1', cityName='Santa Barbara', rate='26%', area='college town', stufac='18:1', majors='Social Sciences, Biological and Biomedical Sciences, Mathematics and Statistics')
-        i9 = Colleges(college='UC Irvine', id='uci', uid='uci1', cityName='Irvine', rate='41%', area='', stufac='18:1', majors='Health-Related Knowledge and Skills, Psychology, Business, Management, Marketing, and Related Support Services')
+        i1 = Colleges(college='USCD', id='ucsd', uid='ucsd1', city='San Diego', rate='34%', area='urban', stufac='19:1', majors='Biology, Cognitive Science, International studies')
+        i2 = Colleges(college='UCSC', id='ucsc', uid='ucsc1', city='Santa Cruz', rate='52%', area='suburban', stufac='18:1', majors='Computer Science, Psychology, Cell/Cellular and Molecular Biology')
+        i3 = Colleges(college='UCLA', id='ucla', uid='ucla1', city='Los Angeles', rate='12%', area='urban', stufac='17:1', majors='Sociology, Political Science and Government, and Econometrics and Quantitative Economics')
+        i4 = Colleges(college='UC Davis', id='ucdavis', uid='ucdavis1', city='LA', rate='46%', area='suburban', stufac='20:1', majors='Research and Experimental Psychology, Management Sciences and Information Systems, Neuroscience and Neurobiology')
+        i5 = Colleges(college='UC Berkeley', id='ucb', uid='ucb1', city='Berkeley', rate='14.4%', area='', stufac='18:1', majors='Cell/Cellular and Molecular Biology, Computer Science, and Econometrics and Quantitative Economics.')
+        i6 = Colleges(college='UC Riverside', id='ucr', uid='ucr1', city='Riverside', rate='69%', area='', stufac='22:1', majors='Business Administration and Management, Psychology, Biology/Biological Sciences')
+        i7 = Colleges(college='UC Merced', id='ucm', uid='ucm1', city='Merced', rate='89%', area='', stufac='20:1', majors='Biology/Biological Sciences, Psychology, Business Administration and Management')
+        i8 = Colleges(college='UCSB', id='ucsb', uid='ucsb1', city='Santa Barbara', rate='26%', area='college town', stufac='18:1', majors='Social Sciences, Biological and Biomedical Sciences, Mathematics and Statistics')
+        i9 = Colleges(college='UC Irvine', id='uci', uid='uci1', city='Irvine', rate='41%', area='', stufac='18:1', majors='Health-Related Knowledge and Skills, Psychology, Business, Management, Marketing, and Related Support Services')
         
         colleges = [i1, i2, i3, i4, i5, i6, i7, i8, i9]
 
