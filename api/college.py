@@ -34,8 +34,8 @@ class CollegeAPI:
             if uid is None or len(uid) < 2:
                 return {'message': f'User ID is missing, or is less than 2 characters'}, 212
 
-            city = body.get('city')
-            if city is None or len(city) < 1:
+            cityName = body.get('cityName')
+            if cityName is None or len(cityName) < 1:
                 return {'message': f'Input City'}, 213
             
             rate = body.get('rate')
@@ -54,7 +54,7 @@ class CollegeAPI:
             io = Colleges(id=id,
                             uid=uid,
                             college=college,
-                            city=city,
+                            cityName=cityName,
                             rate=rate,
                             area=area,
                             stufac=stufac,
