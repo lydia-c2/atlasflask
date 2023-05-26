@@ -6,21 +6,14 @@ import json
 
 from __init__ import app, db
 from sqlalchemy.exc import IntegrityError
-from werkzeug.security import generate_password_hash, check_password_hash
-
-
-
-## INPUTTED WORKOUT CLASS
-
 
 class Colleges(db.Model):
     __tablename__ = 'Colleges'
 
-    # Define the workout schema
+    # Define the colleges schema
     id = db.Column(db.Integer, primary_key=True)
-    _uid = db.Column(db.String(255), unique=True, nullable=False)
-    _college = db.Column(db.Text, unique=False, nullable=False)
-    _cityName = db.Column(db.Text, unique=False, nullable=False)
+    _college = db.Column(db.String(255), unique=True, nullable=False)
+    _city = db.Column(db.Text, unique=False, nullable=False)
     _rate = db.Column(db.Text, unique=False, nullable=False)
     _area = db.Column(db.Text, unique=False, nullable=False)
     _stufac = db.Column(db.Text, unique=False, nullable=False)
@@ -28,30 +21,13 @@ class Colleges(db.Model):
 
     
 
-    # Constructor of a Inputworkout object, initializes of instance variables within object
-    def __init__(self, id, uid, college, cityName, rate, area, stufac, majors):
-        self.userID = id
-        self._uid = uid
-        self.college = college
-        self.cityName = cityName
-        self.rate = rate
-        self.area = area
-        self.stufac = stufac
-        self.majors = majors
-
-
-    @property
-    def uid(self):
-        return self._uid
-    
-    
-    @uid.setter
-    def uid(self, uid):
-        self._uid = uid
-        
-    def is_uid(self, uid):
-        return self._uid == uid
-
+    def __init__(self, college, city, rate, area, stufac, majors):
+        self._college = college
+        self._city = city
+        self._rate = rate
+        self._area = area
+        self._stufac = stufac
+        self._majors = majors
 
     @property
     def college(self):
@@ -62,14 +38,17 @@ class Colleges(db.Model):
     def college(self, college):
         self._college = college
 
+    def is_college(self, college):
+        return self._college == college
+
 
     @property
-    def cityName(self):
-        return self._cityName
+    def city(self):
+        return self._city
     
-    @cityName.setter
-    def cityName(self, cityName):
-        self._cityName = cityName
+    @city.setter
+    def city(self, city):
+        self._city = city
 
 
     @property
@@ -109,6 +88,11 @@ class Colleges(db.Model):
         self._majors = majors
 
     
+    @property
+    def __str__(self):
+        return json.dumps(self.read())
+
+    
     # CRUD create, adds a new record to the Colleges table
     def create(self):
         try:
@@ -122,12 +106,10 @@ class Colleges(db.Model):
 
   
     def read(self):
-        
         return {
             "id": self.id,
-            "uid": self.uid,
             "college": self.college,
-            "cityName": self.cityName,
+            "city": self.city,
             "rate": self.rate,
             "area": self.area,
             "stufac": self.stufac,
@@ -152,15 +134,15 @@ def initColleges():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        i1 = Colleges(college='USCD', id='ucsd', uid='ucsd1', city='San Diego', rate='34%', area='urban', stufac='19:1', majors='Biology, Cognitive Science, International studies')
-        i2 = Colleges(college='UCSC', id='ucsc', uid='ucsc1', city='Santa Cruz', rate='52%', area='suburban', stufac='18:1', majors='Computer Science, Psychology, Cell/Cellular and Molecular Biology')
-        i3 = Colleges(college='UCLA', id='ucla', uid='ucla1', city='Los Angeles', rate='12%', area='urban', stufac='17:1', majors='Sociology, Political Science and Government, and Econometrics and Quantitative Economics')
-        i4 = Colleges(college='UC Davis', id='ucdavis', uid='ucdavis1', city='LA', rate='46%', area='suburban', stufac='20:1', majors='Research and Experimental Psychology, Management Sciences and Information Systems, Neuroscience and Neurobiology')
-        i5 = Colleges(college='UC Berkeley', id='ucb', uid='ucb1', city='Berkeley', rate='14.4%', area='', stufac='18:1', majors='Cell/Cellular and Molecular Biology, Computer Science, and Econometrics and Quantitative Economics.')
-        i6 = Colleges(college='UC Riverside', id='ucr', uid='ucr1', city='Riverside', rate='69%', area='', stufac='22:1', majors='Business Administration and Management, Psychology, Biology/Biological Sciences')
-        i7 = Colleges(college='UC Merced', id='ucm', uid='ucm1', city='Merced', rate='89%', area='', stufac='20:1', majors='Biology/Biological Sciences, Psychology, Business Administration and Management')
-        i8 = Colleges(college='UCSB', id='ucsb', uid='ucsb1', city='Santa Barbara', rate='26%', area='college town', stufac='18:1', majors='Social Sciences, Biological and Biomedical Sciences, Mathematics and Statistics')
-        i9 = Colleges(college='UC Irvine', id='uci', uid='uci1', city='Irvine', rate='41%', area='', stufac='18:1', majors='Health-Related Knowledge and Skills, Psychology, Business, Management, Marketing, and Related Support Services')
+        i1 = Colleges(college='USCD', city='San Diego', rate='34%', area='urban', stufac='19:1', majors='Biology, Cognitive Science, International studies')
+        i2 = Colleges(college='UCSC', city='Santa Cruz', rate='52%', area='suburban', stufac='18:1', majors='Computer Science, Psychology, Cell/Cellular and Molecular Biology')
+        i3 = Colleges(college='UCLA', city='Los Angeles', rate='12%', area='urban', stufac='17:1', majors='Sociology, Political Science and Government, and Econometrics and Quantitative Economics')
+        i4 = Colleges(college='UC Davis', city='LA', rate='46%', area='suburban', stufac='20:1', majors='Research and Experimental Psychology, Management Sciences and Information Systems, Neuroscience and Neurobiology')
+        i5 = Colleges(college='UC Berkeley',city='Berkeley', rate='14.4%', area='urban', stufac='18:1', majors='Cell/Cellular and Molecular Biology, Computer Science, and Econometrics and Quantitative Economics.')
+        i6 = Colleges(college='UC Riverside', city='Riverside', rate='69%', area='urban', stufac='22:1', majors='Business Administration and Management, Psychology, Biology/Biological Sciences')
+        i7 = Colleges(college='UC Merced', city='Merced', rate='89%', area='urban', stufac='20:1', majors='Biology/Biological Sciences, Psychology, Business Administration and Management')
+        i8 = Colleges(college='UCSB', city='Santa Barbara', rate='26%', area='college town', stufac='18:1', majors='Social Sciences, Biological and Biomedical Sciences, Mathematics and Statistics')
+        i9 = Colleges(college='UC Irvine', city='Irvine', rate='41%', area='suburban', stufac='18:1', majors='Health-Related Knowledge and Skills, Psychology, Business, Management, Marketing, and Related Support Services')
         
         colleges = [i1, i2, i3, i4, i5, i6, i7, i8, i9]
 
@@ -168,11 +150,11 @@ def initColleges():
         for college in colleges:
             try:
                 '''add a few 1 to 4 notes per user'''
-                for num in range(randrange(1, 9)):
-                #  note = "#### " + user.college + " note " + str(num) + ". \n Generated by test data."
-                    '''add college data to table'''
+                for num in range(randrange(1, 6)):
+                    note = "#### " + college.college + " note " + str(num) + ". \n Generated by test data."
+                '''add college data to table'''
                 college.create()
             except IntegrityError:
                 '''fails with bad or duplicate data'''
                 db.session.remove()
-                print(f"ERROR {Colleges.id}")
+                print(f"ERROR {Colleges.college}")
