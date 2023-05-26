@@ -10,6 +10,7 @@ from model.users import initUsers
 from model.players import initPlayers
 from model.reviews import initReviews
 from model.colleges import initColleges
+from model.unis import initUniversity
 
 
 # setup APIs
@@ -19,6 +20,7 @@ from api.user import user_api # Blueprint import api definition
 from api.player import player_api
 from api.review import review_api
 from api.college import college_api
+from api.uni import uni_api
 
 
 # setup App pages
@@ -36,6 +38,7 @@ app.register_blueprint(player_api)
 app.register_blueprint(app_projects) # register app pages
 app.register_blueprint(review_api)
 app.register_blueprint(college_api)
+app.register_blueprint(uni_api)
 
 @app.errorhandler(404)  # catch for URL not found
 def page_not_found(e):
@@ -57,6 +60,7 @@ def activate_job():  # activate these items
     initPlayers()
     initReviews()
     initColleges()
+    initUniversity()
 
 # this runs the application on the development server
 if __name__ == "__main__":
