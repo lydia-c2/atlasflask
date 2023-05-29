@@ -16,8 +16,9 @@ class University(db.Model):
     _school = db.Column(db.String(255), unique=False, nullable=False)
     _rate = db.Column(db.Text, unique=True, nullable=False)
     _stufac = db.Column(db.Text, unique=True, nullable=False)
+    _majors = db.Column(db.Text, unique=False, nullable=False)
     # constructor of a School object, initializes the instance variables within object (self)
-    def __init__(self, school, rate, stufac):
+    def __init__(self, school, rate, stufac, majors):
         self._school = school    # variables with self prefix become part of the object, 
         self._rate = rate
         self._stufac = stufac
