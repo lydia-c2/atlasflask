@@ -22,6 +22,7 @@ class University(db.Model):
         self._school = school    # variables with self prefix become part of the object, 
         self._rate = rate
         self._stufac = stufac
+        self._majors = majors
 
     # a name getter method, extracts name from object
     @property
@@ -51,6 +52,14 @@ class University(db.Model):
     @stufac.setter
     def stufac(self, stufac):
         self._stufac = stufac
+
+    @property
+    def majors(self):
+        return self._majors
+    
+    @majors.setter
+    def majors(self, majors):
+        self.majors = majors
         
     
     @property
@@ -75,6 +84,7 @@ class University(db.Model):
             "school": self.school,
             "rate": self.rate,
             "stufac": self.stufac,
+            "majors": self.majors
         }
 
     # CRUD update: updates review name, password, phone
