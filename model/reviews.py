@@ -100,8 +100,9 @@ def initReviews():
         u3 = Review(school='UCI', review='Go anteaters!!!!!!!!!')
         u4 = Review(school='UCM', review='Nothing fun to do at all around.')
         u5 = Review(school='UCSB', review='Party School!!!!')
+        u6 = Review(school='UCSC', review='Great program, my son goes here')
 
-        reviews = [u1, u2, u3, u4, u5]
+        reviews = [u1, u2, u3, u4, u5, u6]
 
         """Builds sample reviews/note(s) data"""
         for review in reviews:
