@@ -29,11 +29,15 @@ class UniversityAPI:
             stufac = body.get('stufac')
             if stufac is None or len(stufac) < 1:
                 return {'message': f'Student Faculty Ratio is missing'}, 400
+            majors = body.get('majors')
+            if majors is None or len(majors) < 1:
+                return {'message': f'Majors is missing'}, 400
 
             ''' #1: Key code block, setup REVIEW OBJECT '''
             so = University(school=school, 
                       rate=rate,
-                      stufac=stufac)
+                      stufac=stufac,
+                      majors=majors)
             
             
             ''' #2: Key Code block to add REVIEW to database '''
