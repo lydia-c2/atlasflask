@@ -16,11 +16,13 @@ class University(db.Model):
     _school = db.Column(db.String(255), unique=False, nullable=False)
     _rate = db.Column(db.Text, unique=True, nullable=False)
     _stufac = db.Column(db.Text, unique=True, nullable=False)
+    _majors = db.Column(db.Text, unique=True, nullable=False)
     # constructor of a School object, initializes the instance variables within object (self)
-    def __init__(self, school, rate, stufac):
+    def __init__(self, school, rate, stufac, majors):
         self._school = school    # variables with self prefix become part of the object, 
         self._rate = rate
         self._stufac = stufac
+        self._majors
 
     # a name getter method, extracts name from object
     @property
@@ -50,6 +52,14 @@ class University(db.Model):
     @stufac.setter
     def stufac(self, stufac):
         self._stufac = stufac
+
+    @property
+    def majors(self):
+        return self._majors
+    
+    @majors.setter
+    def majors(self, majors):
+        self._majors = majors
         
     
     @property
@@ -74,6 +84,7 @@ class University(db.Model):
             "school": self.school,
             "rate": self.rate,
             "stufac": self.stufac,
+            "majors": self.majors,
         }
 
     # CRUD update: updates review name, password, phone
@@ -84,6 +95,8 @@ class University(db.Model):
             self.rate = rate
         if len(rate) > 0:
             self.rate = rate
+        if len(school) > 0:
+            self.school = school
         if len(school) > 0:
             self.school = school
         if len(school) > 0:
@@ -106,7 +119,7 @@ def initUniversity():
         # db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = University(school='USCD', rate='34%', stufac='19:1')
+        u1 = University(school='UCSD', rate='34%', stufac='19:1')
         u2 = University(school='UCSC',rate='52%', stufac='18:1')
         u3 = University(school='UCLA', rate='12%', stufac='17:1')
         u4 = University(school='UC Davis', rate='46%', stufac='20:1')
