@@ -16,13 +16,11 @@ class University(db.Model):
     _school = db.Column(db.String(255), unique=False, nullable=False)
     _rate = db.Column(db.Text, unique=True, nullable=False)
     _stufac = db.Column(db.Text, unique=True, nullable=False)
-    _majors = db.Column(db.Text, unique=True, nullable=False)
     # constructor of a School object, initializes the instance variables within object (self)
-    def __init__(self, school, rate, stufac, majors):
+    def __init__(self, school, rate, stufac):
         self._school = school    # variables with self prefix become part of the object, 
         self._rate = rate
         self._stufac = stufac
-        self._majors
 
     # a name getter method, extracts name from object
     @property
@@ -52,14 +50,6 @@ class University(db.Model):
     @stufac.setter
     def stufac(self, stufac):
         self._stufac = stufac
-
-    @property
-    def majors(self):
-        return self._majors
-    
-    @majors.setter
-    def majors(self, majors):
-        self._majors = majors
         
     
     @property
@@ -84,7 +74,6 @@ class University(db.Model):
             "school": self.school,
             "rate": self.rate,
             "stufac": self.stufac,
-            "majors": self.majors,
         }
 
     # CRUD update: updates review name, password, phone
@@ -95,8 +84,6 @@ class University(db.Model):
             self.rate = rate
         if len(rate) > 0:
             self.rate = rate
-        if len(school) > 0:
-            self.school = school
         if len(school) > 0:
             self.school = school
         if len(school) > 0:
@@ -119,15 +106,15 @@ def initUniversity():
         # db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = University(school='UCSD', rate='34%', stufac='19:1', majors='Biology, Cognitive Science, International studies')
-        u2 = University(school='UCSC',rate='52%', stufac='18:1', majors='Computer Science, Psychology, Cell/Cellular and Molecular Biology')
-        u3 = University(school='UCLA', rate='12%', stufac='17:1', majors='Sociology, Political Science and Government, and Econometrics and Quantitative Economics')
-        u4 = University(school='UC Davis', rate='46%', stufac='20:1', majors='Research and Experimental Psychology, Management Sciences and Information Systems, Neuroscience and Neurobiology')
-        u5 = University(school='UC Berkeley', rate='14.4%', stufac='18:1', majors='Cell/Cellular and Molecular Biology, Computer Science, and Econometrics and Quantitative Economics.')
-        u6 = University(school='UC Riverside', rate='69%', stufac='22:1', majors='Business Administration and Management, Psychology, Biology/Biological Sciences')
-        u7 = University(school='UC Merced', rate='89%', stufac='20:1', majors='Biology/Biological Sciences, Psychology, Business Administration and Management')
-        u8 = University(school='UCSB', rate='26%', stufac='18:1', majors='Social Sciences, Biological and Biomedical Sciences, Mathematics and Statistics')
-        u9 = University(school='UC Irvine', rate='41%', stufac='18:1', majors='Health-Related Knowledge and Skills, Psychology, Business, Management, Marketing, and Related Support Services')
+        u1 = University(school='USCD', rate='34%', stufac='19:1')
+        u2 = University(school='UCSC',rate='52%', stufac='18:1')
+        u3 = University(school='UCLA', rate='12%', stufac='17:1')
+        u4 = University(school='UC Davis', rate='46%', stufac='20:1')
+        u5 = University(school='UC Berkeley', rate='14.4%', stufac='18:1')
+        u6 = University(school='UC Riverside', rate='69%', stufac='22:1')
+        u7 = University(school='UC Merced', rate='89%', stufac='20:1')
+        u8 = University(school='UCSB', rate='26%', stufac='18:1')
+        u9 = University(school='UC Irvine', rate='41%', stufac='18:1')
 
         schools = [u1, u2, u3, u4, u5, u6, u7, u8, u9]
 
