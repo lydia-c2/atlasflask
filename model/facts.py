@@ -66,17 +66,6 @@ class Fact(db.Model):
             "fact": self.fact
         }
 
-    # CRUD update: updates fact name, password, phone
-    # returns self
-    def update(self, school="", fact=""):
-        """only updates values with length"""
-        if len(fact) > 0:
-            self.fact = fact
-        if len(school) > 0:
-            self.school = school
-        db.session.commit()
-        return self
-
     # CRUD delete: remove self
     # None
     def delete(self):
