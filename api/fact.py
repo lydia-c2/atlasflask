@@ -2,14 +2,14 @@ import json
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 
-from model.reviews import Review
+from model.facts import fact
 from __init__ import db
 
-review_api = Blueprint('review_api', __name__,
+fact_api = Blueprint('fact_api', __name__,
                    url_prefix='/api/reviews')
 
 # API docs https://flask-restful.readthedocs.io/en/latest/api.html
-api = Api(review_api)
+api = Api(fact_api)
 
 class ReviewPI:        
     class _Create(Resource):
@@ -25,7 +25,7 @@ class ReviewPI:
             # validate review
             fact = body.get('fact')
             if fact is None or len(fact) < 1:
-                return {'message': f'Review is missing'}, 400
+                return {'message': f'fact is missing'}, 400
 
             ''' #1: Key code block, setup REVIEW OBJECT '''
             so = fact(school=school, 
@@ -49,7 +49,7 @@ class ReviewPI:
     
     class _Delete(Resource):
         def delete(self):
-            db.session.query("fact").delete()
+            db.session.query(fact).delete()
             db.session.commit()
             return {'message': 'All reviews have been deleted.'}
             
