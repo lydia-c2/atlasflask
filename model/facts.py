@@ -95,15 +95,15 @@ def initFacts():
         # db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = fact(school='UCSD', fact='There are 220 thousand Eucalyptus trees on campus')
-        u2 = fact(school='UCB', fact='The name for Berkeley\'s bear is Oski')
-        u3 = fact(school='UCLA', fact='UCLA launched the internet in 1969 to Stanford')
-        u4 = fact(school='UCI', fact='There are concerts, festivals, movie screenings, comedy nights, and many other special activities throughout the year.')
-        u5 = fact(school='UCSB', fact='There are 7 bikeways on campus')
-        u6 = fact(school='UCD', fact='Aggies is a reference to their agricultural beginnings')
-        u7 = fact(school='UCSC', fact='The mascot is a banana slug')
-        u8 = fact(school='UCR', fact='One of the top 50 green colleges in America')
-        u9 = fact(school='UCM', fact='Their nickname is the Golden Bobcats')
+        u1 = Fact(school='UCSD', fact='There are 220 thousand Eucalyptus trees on campus')
+        u2 = Fact(school='UCB', fact='The name for Berkeley\'s bear is Oski')
+        u3 = Fact(school='UCLA', fact='UCLA launched the internet in 1969 to Stanford')
+        u4 = Fact(school='UCI', fact='There are concerts, festivals, movie screenings, comedy nights, and many other special activities throughout the year.')
+        u5 = Fact(school='UCSB', fact='There are 7 bikeways on campus')
+        u6 = Fact(school='UCD', fact='Aggies is a reference to their agricultural beginnings')
+        u7 = Fact(school='UCSC', fact='The mascot is a banana slug')
+        u8 = Fact(school='UCR', fact='One of the top 50 green colleges in America')
+        u9 = Fact(school='UCM', fact='Their nickname is the Golden Bobcats')
 
 
         facts = [u1, u2, u3, u4, u5, u6, u7, u8, u9]
