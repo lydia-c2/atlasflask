@@ -22,20 +22,20 @@ class FactAPI:
             school = body.get('school')
             if school is None or len(school) < 2:
                 return {'message': f'School is missing, or is less than 2 characters'}, 400
-            # validate review
+            # validate fact
             fact = body.get('fact')
             if fact is None or len(fact) < 1:
                 return {'message': f'fact is missing'}, 400
 
-            ''' #1: Key code block, setup REVIEW OBJECT '''
+            ''' #1: Key code block, setup fact OBJECT '''
             so = fact(school=school, 
                       fact=fact)
             
             
-            ''' #2: Key Code block to add REVIEW to database '''
-            # create review in database
+            ''' #2: Key Code block to add fact to database '''
+            # create fact in database
             fact = so.create()
-            # success returns json of review
+            # success returns json of fact
             if fact:
                 return jsonify(fact.read())
             # failure returns error
@@ -43,7 +43,7 @@ class FactAPI:
 
     class _Read(Resource):
         def get(self):
-            facts = facts.query.all()    # read/extract all REVIEWS from database
+            facts = facts.query.all()    # read/extract all facts from database
             json_ready = [fact.read() for fact in facts]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
     
