@@ -6,12 +6,12 @@ from model.facts import fact
 from __init__ import db
 
 fact_api = Blueprint('fact_api', __name__,
-                   url_prefix='/api/reviews')
+                   url_prefix='/api/facts')
 
 # API docs https://flask-restful.readthedocs.io/en/latest/api.html
 api = Api(fact_api)
 
-class ReviewPI:        
+class FactAPI:        
     class _Create(Resource):
         def post(self):
             ''' Read data for json body '''
@@ -51,7 +51,7 @@ class ReviewPI:
         def delete(self):
             db.session.query(fact).delete()
             db.session.commit()
-            return {'message': 'All reviews have been deleted.'}
+            return {'message': 'All facts have been deleted.'}
             
 
     # building RESTapi endpoint
