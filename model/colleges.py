@@ -134,7 +134,7 @@ def initColleges():
         """Create database and tables"""
         db.create_all()
         """Tester data for table"""
-        i1 = Colleges(college='USCD', city='San Diego', rate='34%', area='urban', stufac='19:1', majors='Biology, Cognitive Science, International studies')
+        i1 = Colleges(college='UCSD', city='San Diego', rate='34%', area='urban', stufac='19:1', majors='Biology, Cognitive Science, International studies')
         i2 = Colleges(college='UCSC', city='Santa Cruz', rate='52%', area='suburban', stufac='18:1', majors='Computer Science, Psychology, Cell/Cellular and Molecular Biology')
         i3 = Colleges(college='UCLA', city='Los Angeles', rate='12%', area='urban', stufac='17:1', majors='Sociology, Political Science and Government, and Econometrics and Quantitative Economics')
         i4 = Colleges(college='UC Davis', city='LA', rate='46%', area='suburban', stufac='20:1', majors='Research and Experimental Psychology, Management Sciences and Information Systems, Neuroscience and Neurobiology')
