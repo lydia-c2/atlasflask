@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, request, jsonify
 from flask_restful import Api, Resource # used for REST API building
 
-from model.facts import fact
+from model.facts import Fact
 from __init__ import db
 
 fact_api = Blueprint('fact_api', __name__,
@@ -11,7 +11,7 @@ fact_api = Blueprint('fact_api', __name__,
 # API docs https://flask-restful.readthedocs.io/en/latest/api.html
 api = Api(fact_api)
 
-class FactAPI:        
+class FactPI:        
     class _Create(Resource):
         def post(self):
             ''' Read data for json body '''
@@ -28,7 +28,7 @@ class FactAPI:
                 return {'message': f'fact is missing'}, 400
 
             ''' #1: Key code block, setup fact OBJECT '''
-            so = fact(school=school, 
+            so = Fact(school=school, 
                       fact=fact)
             
             
@@ -43,13 +43,13 @@ class FactAPI:
 
     class _Read(Resource):
         def get(self):
-            facts = facts.query.all()    # read/extract all facts from database
+            facts = Fact.query.all()    # read/extract all facts from database
             json_ready = [fact.read() for fact in facts]  # prepare output in json
             return jsonify(json_ready)  # jsonify creates Flask response object, more specific to APIs than json.dumps
     
     class _Delete(Resource):
         def delete(self):
-            db.session.query(fact).delete()
+            db.session.query(Fact).delete()
             db.session.commit()
             return {'message': 'All facts have been deleted.'}
             
