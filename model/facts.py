@@ -17,9 +17,9 @@ class Review(db.Model):
     _fact = db.Column(db.Text, unique=True, nullable=False)
 
     # constructor of a Review object, initializes the instance variables within object (self)
-    def __init__(self, school, review):
+    def __init__(self, school, fact):
         self._school = school    # variables with self prefix become part of the object, 
-        self._fact = "fact"
+        self._fact = fact
 
     # a name getter method, extracts name from object
     @property
@@ -70,9 +70,9 @@ class Review(db.Model):
     def update(self, school="", fact=""):
         """only updates values with length"""
         if len(fact) > 0:
-            self.review = fact
+            self.fact = fact
         if len(fact) > 0:
-            self.review = Review
+            self.fact = fact
         if len(school) > 0:
             self.school = school
         if len(school) > 0:
@@ -89,7 +89,7 @@ class Review(db.Model):
 
 """Database Creation and Testing """
 
-def initReviews():
+def initFacts():
     with app.app_context():
         """Create database and tables"""
         # db.init_app(app)
