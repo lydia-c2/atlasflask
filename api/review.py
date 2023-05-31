@@ -26,9 +26,14 @@ class ReviewPI:
             review = body.get('review')
             if review is None or len(review) < 1:
                 return {'message': f'Review is missing'}, 400
+            # validate score
+            score = body.get('score')
+            if score is None or len(score) < 1:
+                return {'message': f'Review is missing'}, 400
 
             ''' #1: Key code block, setup REVIEW OBJECT '''
             so = Review(school=school, 
+                        score=score, 
                       review=review)
             
             
@@ -39,7 +44,7 @@ class ReviewPI:
             if review:
                 return jsonify(review.read())
             # failure returns error
-            return {'message': f'Processed {school}, either a format error or rEVEIE {review} is duplicate'}, 400
+            return {'message': f'Processed {school}, either a format error or review {review} is duplicate'}, 400
 
     class _Read(Resource):
         def get(self):

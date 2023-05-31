@@ -9,17 +9,19 @@ from sqlalchemy.exc import IntegrityError
 
 # Define the Review class to manage actions in the 'reviews' table
 class Review(db.Model):
-    __tablename__ = 'reviews' 
+    __tablename__ = 'reviews2' 
 
     # Define the Review schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
     _school = db.Column(db.String(255), unique=False, nullable=False)
     _review = db.Column(db.Text, unique=True, nullable=False)
+    _score = db.Column(db.Integer, unique=False, nullable=False)
 
     # constructor of a Review object, initializes the instance variables within object (self)
-    def __init__(self, school, review):
+    def __init__(self, school, review, score):
         self._school = school    # variables with self prefix become part of the object, 
         self._review = review
+        self._score = score
 
     # a name getter method, extracts name from object
     @property
@@ -30,6 +32,14 @@ class Review(db.Model):
     @school.setter
     def school(self, school):
         self._school = school
+
+    @property
+    def score(self):
+        return self._score
+    
+    @score.setter
+    def score(self, score):
+        self._score = score
     
     @property
     def review(self):
@@ -62,12 +72,13 @@ class Review(db.Model):
         return {
             "id": self.id,
             "school": self.school,
-            "review": self.review
+            "review": self.review,
+            "score": self.score
         }
 
     # CRUD update: updates review name, password, phone
     # returns self
-    def update(self, school="", review=""):
+    def update(self, school="", review="", score=""):
         """only updates values with length"""
         if len(review) > 0:
             self.review = review
@@ -77,6 +88,10 @@ class Review(db.Model):
             self.school = school
         if len(school) > 0:
             self.school = school
+        if len(score) > 0:
+            self.score = score
+        if len(score) > 0:
+            self.score = score
         db.session.commit()
         return self
 
@@ -95,12 +110,12 @@ def initReviews():
         # db.init_app(app)
         db.create_all()
         """Tester data for table"""
-        u1 = Review(school='UCSD', review='Socially dead :(')
-        u2 = Review(school='UCSD', review='Great engineering program')
-        u3 = Review(school='UCI', review='Go anteaters!!!!!!!!!')
-        u4 = Review(school='UCM', review='Nothing fun to do at all around.')
-        u5 = Review(school='UCSB', review='Party School!!!!')
-        u6 = Review(school='UCSC', review='Great program, my son goes here')
+        u1 = Review(school='UCSD', review='Socially dead :(', score = '2')
+        u2 = Review(school='UCSD', review='Great engineering program', score = '2')
+        u3 = Review(school='UCI', review='Go anteaters!!!!!!!!!', score = '9')
+        u4 = Review(school='UCM', review='Nothing fun to do at all around.', score = '7')
+        u5 = Review(school='UCSB', review='Party School!!!!', score = '8')
+        u6 = Review(school='UCSC', review='Great program, my son goes here', score = '8')
 
         reviews = [u1, u2, u3, u4, u5, u6]
 
