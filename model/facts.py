@@ -1,6 +1,7 @@
 """ database dependencies to support sqliteDB examples """
 from random import randrange
-import os, base64
+import os
+import base64
 import json
 
 from __init__ import app, db
@@ -9,7 +10,7 @@ from sqlalchemy.exc import IntegrityError
 
 # Define the fact class to manage actions in the 'facts' table
 class Fact(db.Model):
-    __tablename__ = 'facts' 
+    __tablename__ = 'facts'
 
     # Define the fact schema with "vars" from object
     id = db.Column(db.Integer, primary_key=True)
@@ -18,38 +19,38 @@ class Fact(db.Model):
 
     # constructor of a fact object, initializes the instance variables within object (self)
     def __init__(self, school, fact):
-        self._school = school    # variables with self prefix become part of the object, 
+        self._school = school  # variables with self prefix become part of the object,
         self._fact = fact
 
     # a name getter method, extracts name from object
     @property
     def school(self):
         return self._school
-    
+
     # a setter function, allows name to be updated after initial object creation
     @school.setter
     def school(self, school):
         self._school = school
-    
+
     @property
     def fact(self):
         return self._fact
-    
+
     @fact.setter
     def fact(self, fact):
-        self.fact = fact
-        
+        self._fact = fact
+
     def is_fact(self, fact):
         return self._fact == fact
-    
+
     @property
     def __str__(self):
         return json.dumps(self.read())
 
     def create(self):
         try:
-            # creates a person object from fact(db.Model) class, passes initializers
-            db.session.add(self)  # add prepares to persist person object to facts table
+            # creates a fact object from Fact (db.Model) class, passes initializers
+            db.session.add(self)  # add prepares to persist fact object to facts table
             db.session.commit()  # SqlAlchemy "unit of work pattern" requires a manual commit
             return self
         except IntegrityError:
@@ -71,10 +72,6 @@ class Fact(db.Model):
         """only updates values with length"""
         if len(fact) > 0:
             self.fact = fact
-        if len(fact) > 0:
-            self.fact = fact
-        if len(school) > 0:
-            self.school = school
         if len(school) > 0:
             self.school = school
         db.session.commit()
@@ -87,12 +84,13 @@ class Fact(db.Model):
         db.session.commit()
         return None
 
+
 """Database Creation and Testing """
+
 
 def initFacts():
     with app.app_context():
         """Create database and tables"""
-        # db.init_app(app)
         db.create_all()
         """Tester data for table"""
         u1 = Fact(school='UCSD', fact='There are 220 thousand Eucalyptus trees on campus')
@@ -120,3 +118,4 @@ def initFacts():
                 '''fails with bad or duplicate data'''
                 db.session.remove()
                 print(f"Records exist, duplicate email, or error: {fact.fact}")
+
