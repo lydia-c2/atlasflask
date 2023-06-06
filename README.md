@@ -1,7 +1,58 @@
 ## [Flask Portfolio Starter](https://github.com/nighthawkcoders/flask_portfolio)
 Runtime link: https://flask.nighthawkcodingsociety.com/
-### Quick way to get started
+## Quick way to get started
 > Quick steps with MacOS or WSL; this uses Nix for programmatic way to build tools and dependencies.
+
+
+### When on vscode you are editing the backend databases, to view these apis on the web, you need to run the repository locally:
+
+- run python3 main.py in general terminal
+- then if it gives you no errors, you should be able to add /api/(databasename) to the end of the link to print the api
+
+### If there is an issue or you want to ensure your project is working, use postman
+
+- Download postman using this link: https://www.postman.com/downloads/ and sign in
+- create new public workspace and title it your repository name.
+    - For example: flask_portfolio
+- Create a new tab and follow the directions that correspond to your desired outcome
+
+- Read:
+    - Get ---> Body --> JSON ---> raw
+    - paste local server in the given space with /api/(databasename)/read
+    - Press send
+    - It should print all tester data if it worked
+
+- Create: 
+    - Post ---> Body --> JSON ---> raw
+    - past local server in the given space with /api/(databasename)/create
+    - In the text box create a new addition following this format 
+        - {"attribute1":"insert", "attribute2":"insert”, "attribute3":"insert", “attribute4:”insert”}
+    - Press send
+    - New additon will be shown in api
+
+### Files needed in order to make database
+
+- The first file needed is the api file
+- In the api folder create a file called (databasename)/py
+
+- Next create a model file
+- In the model folder create a file called (databasenames)/py
+
+### Initialization
+
+- Move to the main.py file in the repository and add the following initialization steps:
+    - from model.(databasename) import init(Databasename)
+    - from api.(databasename) import (databasename)_api
+    - app.register_blueprint((databasename)_api)
+    - init(Databasename)()
+- These steps are necessary for a working project and initialization
+
+In order to connect all this backend data to a frontend, we need a subdomain.
+
+
+
+
+
 
 cd
 - Open a Terminal, install nix which requires admin password: 
